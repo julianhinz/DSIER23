@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<title>IKEA Puerto Rico - Compra Muebles, Iluminación, Accesorios para el Hogar y Más</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+<link rel='preload' as='style' media='all' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' onload=" this.onload=null;this.rel='stylesheet' "/>
+<noscript><link rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css'></noscript>
+<link rel="preload" href="https://d2ko4igzsg7f0j.cloudfront.net/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="https://d2ko4igzsg7f0j.cloudfront.net/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="https://d2ko4igzsg7f0j.cloudfront.net/webroot/fonts/NotoIKEALatin/NotoIKEALatin-Italic.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="https://d2ko4igzsg7f0j.cloudfront.net/webroot/fonts/NotoIKEALatin/NotoIKEALatin-BoldItalic.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="alternate" hreflang="x-default" href="">
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/busyLoad/A.busyLoad.css,qv=480.pagespeed.cf.mjsx-J4B1L.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.ticket.css,qv=480.pagespeed.cf.Yt8kbNIqBs.css'/>
+<style>
+                
+    .busy-load-spinner,
+    .icon-loading-ball {
+        display: block;
+        transform-origin: bottom;
+        border-radius: 1.125rem;
+        background: #0058a3;
+        transition: opacity 0.2s cubic-bezier(0.4, 0, 0.4, 1);
+        transform: translateY(-160%);
+        -webkit-animation: loading-bounce 0.7s infinite;
+        animation: loading-bounce 0.7s infinite;
+        height: 1.15rem;
+        width: 1.15rem;
+        position: relative;
+        bottom: 1em;
+    }
+    .busy-load-text {
+        padding-top: 1.5rem;
+        display: none;
+    }
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+        border: 0;
+    }
+    @keyframes loading-bounce {
+        0% {
+            transform: translateY(0);
+            -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+        }
+        40% {
+            transform: translateY(2rem) scaleY(1);
+            -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+        }
+        50% {
+            transform: translateY(2rem) scaleY(0.75);
+            -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+        }
+        60% {
+            transform: translateY(2rem) scaleY(1);
+            -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+    @-webkit-keyframes loading-bounce {
+        0% {
+            transform: translateY(0);
+            -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+        }
+        40% {
+            transform: translateY(2rem) scaleY(1);
+            -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+        }
+        50% {
+            transform: translateY(2rem) scaleY(0.75);
+            -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+        }
+        60% {
+            transform: translateY(2rem) scaleY(1);
+            -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+    </style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/A.main_puertorico.css,qv=480.pagespeed.cf.RXphRQpJQz.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/font-awesome/A.font-awesome.css,qv=480.pagespeed.cf.3ytpCsXgL9.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.ikea-pictograms.css,qv=480.pagespeed.cf.ekvq8pGpRT.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.ikea-icons.css,qv=480.pagespeed.cf.xNmkaDADLN.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.ikea-fundament-icons.css,qv=480.pagespeed.cf.IIxzb6yQH2.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.ikea-fundament-icons-v2.css,qv=480.pagespeed.cf._8JMcv9s0l.css'/>
+<style media='all'>body .preloadLoader{display:none}body[data-loading] .preloadLoader{display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:center;align-items:center;flex-direction:column;flex-wrap:wrap;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.85);z-index:2}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.buttons.css,qv=480.pagespeed.cf.D99jyIyLY5.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.sidenav.css,qv=480.pagespeed.cf._--pfMd9J1.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.modal.css,qv=480.pagespeed.cf.tp9qCx7aUi.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.prices_puertorico.css,qv=480.pagespeed.cf.5RbsDXRJ-p.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/intltelinput/A.intlTelInput.css,qv=480.pagespeed.cf.e6nJkZJo_J.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/datepicker/A.datepicker.min.css,qv=480.pagespeed.cf.QgOPMhQtPL.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/select2/A.select2_conjurer.css,qv=480.pagespeed.cf.jQ-9jE0SOe.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.client_account.css,qv=480.pagespeed.cf.-9UrjnSTa_.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.ikeaBusiness.css,qv=480.pagespeed.cf.Bzb5IXpsWD.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.address_module.css,qv=480.pagespeed.cf.NXsaEK6bVJ.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.buttons.css,qv=480.pagespeed.cf.D99jyIyLY5.css'/>
+<style media='all'>.message-empty p{margin:20px 0 10px}.message-empty .icon{font-size:4.5rem;line-height:4.5rem}.message-empty .icon[class*="picto"]:before{font-size:4.5rem;color:#111}.message-empty .link{text-decoration:underline;margin:0}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/vendor/icheck/A.icheck_custom.css,qv=480.pagespeed.cf.dDBWidVRAY.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.flag-sprites.css,qv=480.pagespeed.cf.g9Wx4GGmUD.css'/>
+<style media='all'>.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{transform:translate3d(0,0,0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/slick/A.slick-theme-custom.css,qv=480.pagespeed.cf.xEgFTe3Rzx.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/slick/A.sliderMain_conjurer.css,qv=480.pagespeed.cf.G4NMuF0mcV.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/jqueryui/A.jquery-ui-custom.css,qv=480.pagespeed.cf.qrj2-gXoql.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/views/A.socialNetworks.css,qv=480.pagespeed.cf.HRRwPYB4TO.css'/>
+<style media='all'>.container-email-stock form[data-action="sendEmailNotify"] .form-row{flex-wrap:wrap}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group .form-control{flex:1 1 65%}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group button{min-height:auto;flex:1 1 23%}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group .message{display:none;justify-content:flex-start;align-items:center;margin-top:.5rem;font-size:12px;flex:0 0 100%}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group.error [type="email"]{border-color:#c00}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group.error .message{display:-webkit-box;display:-ms-flexbox;display:flex}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.warnings.css,qv=480.pagespeed.cf.HiryGsgky_.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.flag-sprites.css,qv=480.pagespeed.cf.g9Wx4GGmUD.css'/>
+<style media='all'>.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}.slick-list:focus{outline:none}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-track,.slick-slider .slick-list{transform:translate3d(0,0,0)}.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}.slick-track:before,.slick-track:after{content:"";display:table}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{float:left;height:100%;min-height:1px;display:none}[dir="rtl"] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/slick/A.slick-theme-custom.css,qv=480.pagespeed.cf.xEgFTe3Rzx.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/slick/A.sliderMain_conjurer.css,qv=480.pagespeed.cf.G4NMuF0mcV.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/jqueryui/A.jquery-ui-custom.css,qv=480.pagespeed.cf.qrj2-gXoql.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/views/A.socialNetworks.css,qv=480.pagespeed.cf.HRRwPYB4TO.css'/>
+<style media='all'>.container-email-stock form[data-action="sendEmailNotify"] .form-row{flex-wrap:wrap}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group .form-control{flex:1 1 65%}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group button{min-height:auto;flex:1 1 23%}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group .message{display:none;justify-content:flex-start;align-items:center;margin-top:.5rem;font-size:12px;flex:0 0 100%}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group.error [type="email"]{border-color:#c00}.container-email-stock form[data-action="sendEmailNotify"] .form-row.form-group.error .message{display:-webkit-box;display:-ms-flexbox;display:flex}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.warnings.css,qv=480.pagespeed.cf.HiryGsgky_.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/animate/A.animate_4.1.0.min.css,qv=480.pagespeed.cf.M3aj0gs58u.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/animate/A.animate_4.1.0_compat.min.css,qv=480.pagespeed.cf.3DcCMmfurT.css'/>
+<style media='all'>#qr-canvas{margin:auto;width:400px;height:400px;max-width:400px}#btn-scan-qr{cursor:pointer}#btn-scan-qr img{height:10em;padding:15px;margin:15px;background:#fff}#qr-result{font-size:1.2em;margin:20px auto;text-align:center;max-width:700px;background-color:#fff;color:red}.container-qr{margin:0 auto;width:100%;height:375px;max-width:500px}#qrVideoElement{margin:0 auto;width:100%;height:300px;display:block;position:absolute;top:0;left:0;-moz-transform:scale(3.5);-webkit-transform:scale(3.5);-o-transform:scale(3.0);-ms-transform:scale(3.0);transform:scale(3.0)}.fa-qrcode{font-size:1.8rem;color:#6c757d}.stage{width:100%;height:300px;position:relative;overflow:hidden}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.productList.css,qv=480.pagespeed.cf.7sXHX-ALBV.css'/> <style media='all'>.sidenav .productInfo .productInfo-header{display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-bottom:1rem}.sidenav .productInfo .productInfo-header>a{display:block;text-decoration:none}.sidenav .productInfo .productInfo-header .productImg{display:block}.sidenav .productInfo .productInfo-header .productImg img.card-img-top{width:100%;max-width:250px;margin:0 auto}.sidenav .productInfo .message .icon:before{font-size:1.5em}.sidenav .productInfo .professionalTestedLabel{color:#6c757d}</style> <link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.itemInfo.css,qv=480.pagespeed.cf.tOoZ6uBfGh.css'/> <link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.energyTag.css,qv=480.pagespeed.cf.oZLAD2vWGj.css'/> <link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.filters.css,qv=480.pagespeed.cf.IcYu99Dszi.css'/> <style media='all'>.listAllRange .hero{display:block;margin:1rem 0 3rem}.listAllRange .hero .heroTit{margin-bottom:1.5rem;text-align:center;letter-spacing:-1.5px}.listAllRange .hero .heroTxt{font-size:.85715rem;margin-bottom:1.5rem;max-width:768px;margin:auto}.listAllRange .listItemRange{display:block;margin:20px 0}.listAllRange .listItemRange h4{font-size:1.1rem;line-height:1.1rem}.listAllRange .listItemRange>ul{list-style:none;display:block;margin:10px 0;padding:0}.listAllRange .listItemRange>ul li{display:block;padding:7px 0}.listAllRange .listItemRange>ul li>a{display:block;font-size:.9rem;line-height:1rem;text-decoration:underline}.listAllRange .listItemRange>ul li:first-of-type{margin-top:0}.listAllRange .listItemRange>ul li:last-of-type{margin-bottom:0}.listAllRooms{margin-bottom:1.5rem}.listAllRooms .hero{display:block;margin:1rem 0 3rem}.listAllRooms .hero .heroTit{margin-bottom:1.5rem;text-align:center;letter-spacing:-1.5px}.listAllRooms .hero .heroTxt{font-size:.85715rem;margin-bottom:1.5rem;max-width:768px;margin:auto}.listAllRooms .listRoom .card-link{position:relative;display:block;width:100%;height:100%;color:#000}.listAllRooms .listRoom .card-link .img-wrapper{width:100%;height:180px;overflow:hidden;display:-webkit-box;display:-ms-flexbox;display:flex;align-items:center;justify-content:center}.listAllRooms .listRoom .card-link .img-wrapper img{transform:scale(1);transition:all 500ms ease-in}.listAllRooms .listRoom .card-link:hover .img-wrapper img{transform:scale(1.15);transition:all 500ms ease-out}</style> <link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/vendor/jqueryRange/A.jqueryRange.css,qv=480.pagespeed.cf.Sx4HI9CP6o.css'/> <style media='all'>.irs{position:relative;display:block;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.irs-line{position:relative;display:block;overflow:hidden;outline:none!important}.irs-line-left,.irs-line-mid,.irs-line-right{position:absolute;display:block;top:0}.irs-line-left{left:0;width:11%}.irs-line-mid{left:9%;width:82%}.irs-line-right{right:0;width:11%}.irs-bar{position:absolute;display:block;left:0;width:0}.irs-bar-edge{position:absolute;display:block;top:0;left:0}.irs-shadow{position:absolute;display:none;left:0;width:0}.irs-slider{position:absolute;display:block;cursor:default;z-index:1}.irs-slider.type_last{z-index:2}.irs-min{position:absolute;display:block;left:0;cursor:default}.irs-max{position:absolute;display:block;right:0;cursor:default}.irs-from,.irs-to,.irs-single{position:absolute;display:block;top:0;left:0;cursor:default;white-space:nowrap}.irs-grid{position:absolute;display:none;bottom:0;left:0;width:100%;height:20px}.irs-with-grid .irs-grid{display:block}.irs-grid-pol{position:absolute;top:0;left:0;width:1px;height:8px;background:#000}.irs-grid-pol.small{height:4px}.irs-grid-text{position:absolute;bottom:0;left:0;white-space:nowrap;text-align:center;font-size:9px;line-height:9px;padding:0 3px;color:#000}.irs-disable-mask{position:absolute;display:block;top:0;left:-1%;width:102%;height:100%;cursor:default;background:rgba(0,0,0,0);z-index:2}.lt-ie9 .irs-disable-mask{background:#000;filter: alpha(opacity=0);cursor:not-allowed}.irs-disabled{opacity:.4}.irs-hidden-input{position:absolute!important;display:block!important;top:0!important;left:0!important;width:0!important;height:0!important;font-size:0!important;line-height:0!important;padding:0!important;margin:0!important;overflow:hidden;outline:none!important;z-index:-9999!important;background:none!important;border-style:solid!important;border-color:transparent!important}</style> <style media='all'>.irs{height:55px}.irs-with-grid{height:75px}.irs-line{height:10px;top:33px;background:#ced4da;border-radius:16px;-moz-border-radius:16px}.irs-line-left{height:8px}.irs-line-mid{height:18px}.irs-line-right{height:8px}.irs-bar{height:10px;top:33px;border-top:1px solid #000;border-bottom:1px solid #000;background:#343a40}.irs-bar-edge{height:10px;top:33px;width:14px;border:1px solid #428bca;border-right:0;background:#428bca;border-radius:16px 0 0 16px;-moz-border-radius:16px 0 0 16px}.irs-shadow{height:2px;top:38px;background:#000;opacity:.3;border-radius:5px;-moz-border-radius:5px}.irs-slider{top:25px;width:27px;height:27px;border:1px solid #adb5bd;background:#e9ecef;border-radius:27px;-moz-border-radius:27px;cursor:pointer}.irs-slider.state_hover,.irs-slider:hover{background:#fff}.irs-min,.irs-max{color:#6c757d;font-size:12px;line-height:1.333;text-shadow:none;top:0;padding:1px 5px;background:#e9ecef;border-radius:3px;-moz-border-radius:3px}.lt-ie9 .irs-min,.lt-ie9 .irs-max{background:#ccc}.irs-from,.irs-to,.irs-single{color:#fff;font-size:12px;line-height:1.333;text-shadow:none;padding:3px 6px;background:#adb5bd;border-radius:3px;-moz-border-radius:3px}.lt-ie9 .irs-from,.lt-ie9 .irs-to,.lt-ie9 .irs-single{background:#999}.irs-grid{height:27px}.irs-grid-pol{opacity:.5;background:#343a40}.irs-grid-pol.small{background:#6c757d}.irs-grid-text{bottom:5px;color:#6c757d}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.template_item_block.css,qv=480.pagespeed.cf.pUxx303-f-.css'/> <style media='all'>.itemSelector .content{border-bottom:1px solid #ddd}.itemSelector .content>.selected-box{display:block;position:relative;cursor:pointer;padding:1rem 0}.itemSelector .content>.selected-box>label{cursor:pointer;display:block;font-size:.85715rem;line-height:1rem;font-weight:700;margin:0;padding:0}.itemSelector .content>.selected-box .value{display:block;font-size:1rem;line-height:1.4rem;font-weight:400!important}.itemSelector .content>.selected-box .icon{position:absolute;display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:flex-end;align-items:center;top:0;right:12px;bottom:0;width:10px;line-height:.7rem;font-size:.7rem;color:#888}.itemSelector .content>.options-box{display:none;list-style:none;margin:0;padding:12px}.itemSelector .content>.options-box .item{display:block;padding:4px 10px;cursor:pointer;margin:0}.itemSelector .content>.options-box .item.active{transition:background .1s linear;background:#f5f5f5;font-weight:600}.itemSelector .content.border-bottom{border-bottom:1px solid #ddd}.itemSelector .content:first-of-type{border-top:1px solid #ddd}.itemSelector .content:last-of-type:not(.border-bottom) {border-bottom:1px solid transparent}.itemSelector .content:hover,.itemSelector .content.hover{transition:border-color .2s linear;border-top:1px solid #222!important;border-bottom:1px solid #222!important}.itemSelector .content.active{border-top:1px solid #222;border-bottom:1px solid #222}.itemSelector .content.active.border-bottom{border-bottom:1px solid #222!important}.itemSelector .content.active .selected-box{border-bottom:1px solid #ddd}.itemSelector .hide{display:none}.form-group.b-bottom .itemSelector .content .selected-box{padding-left:0;padding-right:0}.form-group.b-bottom .itemSelector .content:last-of-type{border-bottom:1px solid #ddd}</style> <style media='all'>.versions{padding-left:0;padding-right:0}.versions.slider .itemVersions.slick-slider.slick-initialized .slick-arrow+.slick-list{margin-left:20px;margin-right:20px}.itemVersions:not(.slick-initialized) {display:-webkit-box;display:-ms-flexbox;display:flex;flex-wrap:wrap}.itemVersions .el{width:45px;padding:0}.itemVersions .el a{display:block;width:45px;height:45px;border:1px solid transparent}.itemVersions .el a:hover{border:1px solid #dfdfdf;border-radius:.25rem}.itemVersions .el a.active{border:1px solid #111;border-radius:.25rem}.itemVersions .el a img{display:block;margin:5px}.itemVersions[data-slider="versions"]{padding-left:0;padding-right:0}.itemVersions[data-slider="versions"] .slick-arrow{margin:0}.itemVersions[data-slider="versions"] .slick-arrow:before{font-size:16px}.itemVersions[data-slider="versions"] .slick-arrow.slick-prev{left:-5px;width:25px;height:25px}.itemVersions[data-slider="versions"] .slick-arrow.slick-next{right:-5px;width:25px;height:25px}.itemVersions[data-slider="versions"] .slick-track{margin-left:0}</style> <link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.template_item_counter.css,qv=480.pagespeed.cf.ggFqF8m8Y0.css'/> <link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/components/A.buttons.css,qv=480.pagespeed.cf.D99jyIyLY5.css'/>
+<style media='all'>.pagination .page-item .page-link{border:1px solid #ddd;border-radius:10rem;padding:8px 10px;margin:0 3px;font-size:.9rem;line-height:.9rem}@media (max-width:767.98px){.pagination .page-item .page-link{padding:4px 5px;font-size:.8rem}}.pagination .page-item .page-link:hover{background:#f7f7f7}.pagination .page-item.active .page-link{border:0;font-weight:600;color:#222;background:transparent}.pagination .page-item.prev,.pagination .page-item.next{border:0}.pagination .page-item.prev .page-link,.pagination .page-item.next .page-link{font-size:.8rem;border:0}.pagination .page-item.prev .page-link:hover,.pagination .page-item.next .page-link:hover{background:transparent}.pagination .page-item.dots .page-link{padding:8px 2px;border:0}@media (max-width:767.98px){.pagination .page-item .page-link{padding:12px 15px}}.pagination--bottom{margin-top:1rem}.pagination--right>nav{margin-left:auto}@media (max-width:767.98px){.pagination>nav{margin:auto}}.listPaginationOrders .pagination{margin:1rem 0!important}</style>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.itemsHeader_puertorico.css,qv=480.pagespeed.cf.ZH-Y0EuApG.css'/>
+<style media='all'>.sameRange{display:block;margin:1rem 0}.sameRange__menu{display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:center;align-items:center;list-style:none;flex-wrap:wrap;margin:0;padding:0}.sameRange__menu .item{margin:1rem 1.25rem}@media (max-width:767.98px){.sameRange__menu .item{margin:1rem .8rem}}.sameRange__menu .item a{display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;text-decoration:none;font-size:.85rem;color:#000}@media (max-width:767.98px){.sameRange__menu .item a{font-size:.8rem}}.sameRange__menu .item a>img{display:block;width:24px;height:24px;background:#f3f3f3;margin-right:10px}@media (max-width:767.98px){.sameRange__menu .item a>img{width:18px;height:18px}}.sameRange_heroAdjustments .productList-hero_title{margin:0}.sameRange_heroAdjustments .container{padding-bottom:1rem!important}</style>
+<link rel="icon" type="image/x-icon" href="https://static.ikea.pr/assets/webroot/img/favicon.ico?v=480"/>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W5SQSG5');</script>
+<!-- End Google Tag Manager -->
+<meta name="google-site-verification" content="fF2V_smWcP34frEbVYpBvforReGGyM4GGNpTZNjvOK8"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-REGMQ5VYED"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-REGMQ5VYED');</script>
+</head>
+<body data-loading="true">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5SQSG5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="sidenav" class="sidenav" style="z-index: 1032;">
+<div class="card close-only-icon">
+<div class="card-header close" aria-label="Close" onclick="sidenavHide();">
+<button type="button" class="close-legend">
+<span aria-hidden="true"><span class="icon-label-text">Cerrar</span></span>
+</button>
+</div>
+<div class="card-body">
+<div class="sidenav-col" data-col="base"></div>
+</div>
+</div>
+</div>
+<div id="sidenavBlocker"></div>
+<div id="sidenavWrapper"></div>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/layout/A.headerMain.css,qv=480.pagespeed.cf.RoM_ULr9cL.css'/>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/css/components/A.searcher.css,qv=480.pagespeed.cf.32sdFOyb5t.css'/>
+<header class="container-fluid headerMain">
+<nav class="navbar navbar-expand-lg navbar-light px-lg-0 mainNav">
+<div class="container-fluid py-1 p-lg-0 flex-column">
+<div id="headerMainToggler">
+<div class="topMenu order-2 order-lg-0">
+<div id="headerMenuServices" class="container-fluid headerMenuServices collapse multi-collapse">
+<div class="container headerMenuServicesContent" id="hideOnScroll">
+<div class="navbar navbar-light mr-lg-auto webSelectors">
+<ul class="navbar-nav siteSelector auto_head_siteSelector">
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle pl-0" href="#" id="siteSelector" role="button" data-toggle="dropdown">
+Puerto Rico
+</a>
+<div class="dropdown-menu" aria-labelledby="siteSelector">
+<a class="dropdown-item" data-action="changeShop" data-name="mayaguez" href="#">Mayagüez</a>
+</div>
+</li>
+</ul>
+<ul class="navbar-nav langSelector auto_head_langSelector">
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle pl-0" href="#" id="langSelector" role="button" data-toggle="dropdown">Español</a>
+<div class="dropdown-menu" aria-labelledby="langSelector">
+<a class="dropdown-item" href="#" data-locale="en_us" data-action="changeLocale"><span>English</span></a>
+<a class="dropdown-item" href="#" data-locale="es_pr" data-action="changeLocale"><span>Español</span></a>
+</div>
+</li>
+</ul> </div>
+<ul class="navbar navbar-nav servicesList mr-lg-auto ml-lg-auto py-0 px-0 align-items-start">
+<li class="nav-item">
+<a class="nav-link text-FAMILY-brand auto_head_if" href="/puertorico/es/ikeafamily/join">IKEA Family</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="/puertorico/es/informacion/especialista/cita-cocina">Cita para tu cocina</a>
+</li>
+<li class="nav-item">
+<a class="nav-link  " href="/puertorico/es/comerenikea">Comer en IKEA</a>
+</li>
+<li class="d-lg-none nav-item">
+<a class="nav-link" href="/puertorico/es/client/myorder"><i class="icon fundament-icon-delivery-24 mr-2"></i>Seguimiento de tu pedido</a>
+</li>
+</ul>
+<ul class="navbar navbar-nav py-0 ml-lg-auto align-items-start px-0 userMenu d-none d-lg-flex">
+<li class="nav-item">
+<a class="nav-link auto_login_access px-0" href="/puertorico/es/client">Inicia sesión o Regístrate</a>
+</li>
+</ul>
+</div>
+</div> </div>
+<div class="container d-flex flex-column order-0 order-lg-1 pb-2">
+<div class="headerMenuProducts p-0 pt-1 pt-md-2 pt-lg-3">
+<a class="navbar-brand pr-2" href="/puertorico/es">
+<img src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/img/logos/IKEA_logo.svg?v=480" class="img-fluid d-inline-block" alt="IKEA"/>
+</a>
+<div id="searcher" class="searcher">
+<div class="input-group">
+<div class="input-group-preappend">
+<button class="btn searchIcon auto_head_search_button" type="button" data-action="searcherImg" data-type="desktop"></button>
+</div>
+<form id="header_searcher_desktop_input_container" method="GET" class='mb-0' action="/puertorico/es/search/" autocomplete="off">
+<input id="header_searcher_desktop_input" data-action="search" name="q" type="text" class="form-control auto_head_search_input" value="" placeholder="Buscar..." aria-label="Buscar">
+<div id="close-wrapper" class="close-wrapper"></div>
+</form>
+<div class="input-group-append">
+<button class="btn closeIcon icon-close-thin" type="button"></button>
+<button id="btn-scan-qr" class="btn fa fa-qrcode d-md-none" type="button" data-action="scan-qr"></button> <button id="btn-foto" class="btn fundament-icon-camera-24 imgSearchIcon auto_head_search_button" type="button" data-action="openImageSearch" data-type="desktop"></button>
+</div>
+</div>
+</div>
+<div id="dropSearcher" class="dropdown-menu">
+<div id="dropSearcherContent" class="container">
+</div>
+</div>
+<div id="backLayout" class="layout"></div>
+<div class="ml-auto pusher invisible ml-lg-5 "></div>
+<div class="ml-4 menuIcon delivery d-nonex d-lg-block">
+<a href="/puertorico/es/client/myorder" class="iconDelivery auto_icon_myOrder">
+<span class="icon fundament-icon-delivery-24"></span>
+</a>	</div>
+<div class="ml-4 menuIcon my-account">
+<a class="auto_login_access" href="/puertorico/es/client">
+<span class="icon fundament-icon-profile-24"></span>
+</a>
+</div>
+<div class="ml-4 menuIcon favourites-notification">
+<a href="/puertorico/es/client/account/favourites" class="iconFavourite-lg cart full auto_icon_fav">
+<span class="icon fundament-icon-wishlist-empty-24"></span>
+<span class="data">0</span>
+</a>
+</div>
+<div class="ml-4 menuIcon shoppingCart addCart-notification">
+<a href="/puertorico/es/shoppingcart/shoppingcart" id="iconCart-lg" class="cart full empty auto_icon_cart">
+<div class="items"> <span data-arg="totalItemsList"></span></div>
+</a> </div>
+<button class="navbar-toggler-cross navbar-toggler-right ml-4 collapsed" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="headerMenuServices headerMenuProducts__menu">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+<div class="clearfix w-100 m-0 d-none"></div>
+</div>
+<ul id="headerMenuProducts__menu" class="headerMenuProducts__menu container navbar-nav collapse multi-collapse order-2
+				">
+<li class="headerMenuProducts__menu--item nav-item dropdown productsMenu">
+<a class="nav-link dropdown-toggle outstanding" href="#" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span>Productos</span>
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownProducts">
+<div class="container px-0 px-md-1">
+<div class="row">
+<div class="col-12 col-lg-9 products">
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/textiles/alfombras"><span>Alfombras</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/iluminacion/lamparas-de-piso"><span>Lámparas de piso</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/iluminacion/lamparas-de-mesa"><span>Lámparas de mesa</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/armarios/armarios-solitarios"><span>Armarios solitarios</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/textiles/cortinas-y-paneles-ventana"><span>Cortinas y paneles ventana</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/comedor/vestir-la-mesa-servir-y-comer/cuberterias"><span>Cuberterías</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/cocinas/menaje-de-cocina/almacenaje-de-alimentos"><span>Almacenaje de alimentos </span></a>
+<a class="dropdown-item" href="/puertorico/es/products/cocinas/menaje-de-cocina/sartenes"><span>Sartenes</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/cocinas/menaje-de-cocina/ollas-y-accesorios-de-cocinar"><span>Ollas y accesorios de cocinar</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/comedor/vestir-la-mesa-servir-y-comer/vajillas"><span>Vajillas</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/comedor/vestir-la-mesa-servir-y-comer/cristalerias"><span>Cristalerías</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/cocinas/menaje-de-cocina/accesorios-de-cocina"><span>Accesorios de cocina</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/bano/organizadores-para-el-bano/accesorios-para-el-bano"><span>Accesorios para el baño</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/armarios/almacenaje-abierto"><span>Almacenaje abierto</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/almacenaje-en-la-sala/almacenaje-cerrado"><span>Almacenaje cerrado</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/ikea-y-los-ninos/almacenaje-y-estudio-para-ninos/almacenaje-modular-infantil"><span>Almacenaje modular infantil </span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/ropa-de-cama/almohadas"><span>Almohadas</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/armarios/armarios-modulares"><span>Armarios modulares</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/organizacion-en-el-dormitorio/cajas-y-canastas"><span>Cajas y canastas</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/camas/camas"><span>Camas</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/camas/camas-altas-y-divanes"><span>Camas altas y divanes</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/ropa-de-cama/cojines"><span>Cojines</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/espacio-de-trabajo/escritorios-y-mesas-para-ordenador/escritorio-para-el-hogar"><span>Escritorio para el hogar </span></a>
+<a class="dropdown-item" href="/puertorico/es/products/espacio-de-trabajo/escritorios-y-mesas-para-ordenador/escritorios-profesionales"><span>Escritorios profesionales</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/almacenaje-en-la-sala/estanterias"><span>Estanterías</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/almacenaje-en-la-sala/estantes-de-pared"><span>Estantes de pared</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/espejos-y-decoracion/fragancias-para-el-hogar"><span>Fragancias para el hogar</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/ropa-de-cama/fundas-de-edredon"><span>Fundas de edredón</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/organizacion-en-el-dormitorio/ganchos-accesorios-para-ropa-y-zapatos"><span>Ganchos/accesorios para ropa y zapatos</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/muebles-de-dormitorio/gaveteros"><span>Gaveteros</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/muebles-de-sala/librerias"><span>Librerías</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/espejos-y-decoracion/marcos"><span>Marcos</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/mattresses-y-colchoncillos/mattresses"><span>Mattresses</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/comedor/mesas-y-sillas-de-comedor/mesas-de-comedor"><span>Mesas de comedor</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/muebles-de-sala/muebles-de-television"><span>Muebles de televisión</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/bano/muebles-para-el-bano/muebles-para-lavamanos"><span>Muebles para lavamanos </span></a>
+<a class="dropdown-item" href="/puertorico/es/products/espacio-de-trabajo/papeleria-organizacion-y-accesorios/organizadores-de-papeleria"><span>Organizadores de papelería</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/organizacion-en-el-dormitorio/organizadores-para-ropa-y-zapatos"><span>Organizadores para ropa y zapatos</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/ikea-y-los-ninos/juegos-para-ninos/peluches"><span>Peluches</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/textiles/persianas-y-estores"><span>Persianas y estores</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/maceteros-floreros-y-plantas-artificiales/plantas-artificiales"><span>Plantas artificiales</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/cocinas/pomos-y-tiradores/pomos-y-tiradores"><span>Pomos y tiradores</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/comedor/mesas-y-sillas-de-comedor/sillas-de-comedor"><span>Sillas de comedor</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/sofas-sillones-y-reposapies/sillones"><span>Sillones</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/sofas-sillones-y-reposapies/sofas"><span>Sofás</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/sofas-cama/sofas-cama"><span>Sofás cama</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/dormitorio/ropa-de-cama/sabanas-y-fundas-de-almohada"><span>Sábanas y fundas de almohada</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/comedor/vestir-la-mesa-servir-y-comer/tazas-y-tazones"><span>Tazas y tazones</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/sala/maceteros-floreros-y-plantas-artificiales/tiestos"><span>Tiestos</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/bano/textiles-para-el-bano/toallas"><span>Toallas</span></a>
+<a class="dropdown-item" href="/puertorico/es/products/jardin-terraza-y-balcon/muebles-de-descanso-y-relax/tumbonas-hamacas-y-bancos"><span>Tumbonas, hamacas y bancos</span></a>
+</div>
+<div class="col-lg-3 mt-3 mt-lg-0 pl-lg-3 popular">
+<p class="mb-0 mt-3 mt-lg-0 pl-1"><strong>Descubre todos los consejos de compra online</strong></p>
+<div class="d-lg-flex flex-lg-column">
+<a class="dropdown-item" href="/puertorico/es/guia-de-compra-tu-cama-en-5-sencillos-pasos"><span>Guía de compra. Tu cama en 5 sencillos pasos</span></a>
+<a class="dropdown-item" href="/puertorico/es/guia-de-compra-como-elegir-tu-conjunto-de-comedor"><span>Guía de compra: Cómo elegir tu conjunto de comedor</span></a>
+<a class="dropdown-item" href="/puertorico/es/guia-de-compra-ropa-de-cama"><span>Guía de compra. Cómo elegir tu ropa de cama</span></a>
+<a class="dropdown-item" href="/puertorico/es/guia-de-compra-iluminacion-inteligente"><span>Guía de compra. Iluminación inteligente para una vida más brillante</span></a>
+<a class="dropdown-item" href="/puertorico/es/inspirations/sala-completa-klippan-kallax"><span>Tu sala por menos de $515</span></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li class="headerMenuProducts__menu--item nav-item dropdown servicesMenu">
+<a class="nav-link dropdown-toggle outstanding" href="#" id="navbarDropdownRooms" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span>
+Áreas del hogar
+</span>
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownRooms">
+<div class="container px-0 px-md-1">
+<div class="row">
+<div class="col-12 rooms">
+<a class="dropdown-item" href="/puertorico/es/rooms/dormitorio"> Dormitorio </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/sala"> Sala </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/comedor"> Comedor </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/cocinas"> Cocinas </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/espacio-de-trabajo"> Espacio de trabajo </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/ikea-y-los-ninos"> IKEA y los niños </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/bano"> Baño </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/jardin-terraza-y-balcon"> Jardín, terraza y balcón </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/recibidor"> Recibidor </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/hogar-inteligente"> Hogar inteligente </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/iluminacion-y-electronica"> Iluminación y electrónica </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/organizacion-en-el-hogar"> Organización en el hogar </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/decoracion-para-el-hogar"> Decoración para el hogar </a>
+<a class="dropdown-item" href="/puertorico/es/rooms/espacio-gaming"> Espacio gaming </a>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li class="headerMenuProducts__menu--item nav-item">
+<a class="nav-link outstanding  " href="/puertorico/es/catalogos">Catálogos online</a>
+</li>
+<li class="headerMenuProducts__menu--item nav-item">
+<a class="nav-link outstanding  " href="/puertorico/es/newitems">Novedades</a>
+</li>
+<li class="headerMenuProducts__menu--item nav-item">
+<a class="nav-link outstanding  " href="/puertorico/es/inspirations">Inspiraciones</a>
+</li>
+<li class="headerMenuProducts__menu--item nav-item">
+<a class="nav-link outstanding text-badge-nlp " href="/puertorico/es/ofertas">Ofertas</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="container-fluid breadcrumbContainer">
+<div class="container">
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="#" data-action="breadcrumb" data-id="2">Inicio</a></li>
+<li class="breadcrumb-item"><strong>Buscar</strong></li>
+</ol>
+</nav>
+</div>
+</div>
+</div>
+</nav>
+<div id="topBanner">
+</div>
+</header>
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="qr_modal">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">QR Scanner</h4>
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">
+<div class="container" id="container container-qr">
+<div class="row">
+<div class="col-sm">
+<div id="qr-result" hidden="">
+<b>Invalid URL</b> <span id="outputData"></span>
+</div>
+<div class="stage">
+<video autoplay="true" id="qrVideoElement">
+</video>
+</div>
+<canvas hidden="" id="qr-canvas"></canvas></div>
+<div>Encontrarás códigos QR en nuestros catálogos o dentro de nuestra tienda. Una vez que los escanees te redirigiremos a la página correspondiente</div>
+<div id="debugText"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/jquery.min.js,qv=480.pagespeed.jm.Y8jX7FH_5H.js' type='text/javascript'></script>
+<script src='/webroot/conjurer/js/QrReader.js?v=480' type='text/javascript'></script>
+<script>$(document).ready(function(){var placeHolder=JSON.parse('["Buscar productos","Buscar contenido","Buscar inspiraci\u00f3n"]');var n=0;var loopLength=placeHolder.length;setInterval(function(){if(n<loopLength){var newPlaceholder=placeHolder[n];$('#header_searcher_desktop_input').attr('placeholder',newPlaceholder);n++;}else{$('#header_searcher_desktop_input').attr('placeholder',placeHolder[0]);n=0;}},1000);});var scrollPos=0
+$(".navbar-toggler-cross").click(function(){if(!$('body').hasClass('noScroll')){scrollPos=$(window).scrollTop();$('#header_searcher_mobile_input_container').removeClass('visibilitySearcher');}document.body.classList.toggle('noScroll');if(!$('body').hasClass('noScroll')){$('html, body').scrollTop(scrollPos);}});$(".servicesMenu .dropdown-toggle").click(function(){$('#headerMainToggler').scrollTop(0);});var closeHamburguerTimer;$(window).on('resize',function(e){clearTimeout(closeHamburguerTimer);closeHamburguerTimer=setTimeout(function(){if($('#headerMainToggler').hasClass('show')){if($(window).width()>=992){$('.navbar-toggler-cross').click();}}},250);});var headerShrink=false;$(window).scroll(function(e){scrollTimer=setTimeout(function(){var hideThis=$('#hideOnScroll');var windowScroll=$(window).scrollTop();var windowWidth=$(window).width();var shrinkDuration=500;if(windowWidth>=992&&windowScroll>0){if(headerShrink==false){blockInputSearch(shrinkDuration);hideThis.slideUp(shrinkDuration);hideThis.fadeOut(shrinkDuration);headerShrink=true;$('.headerMain').addClass('shrink');}}else{if(headerShrink==true){blockInputSearch(shrinkDuration);hideThis.slideDown(shrinkDuration);hideThis.fadeIn(shrinkDuration);headerShrink=false;$('.headerMain').removeClass('shrink');}}},250);});function blockInputSearch(time=1000){$('#header_searcher_desktop_input').prop('disabled',true);setTimeout(function(){$('#header_searcher_desktop_input').prop('disabled',false);},time+250);}$(window).on('load resize',function(e){$('.headerMain .collapse').css('max-height',(window.innerHeight-$('.headerMain').height())+'px');});$(document).ready(function(){QrReader.main();})</script>
+<div class="contentWrapper" id="contentWrapper">
+<div class="container">
+<div class="row">
+<div class="col my-4">
+<h2 class="display-5 mb-4 text-center">Resultados para "00263850"</h2>
+</div>
+</div>
+</div>
+<section class="productList-hero sameRange_heroAdjustments">
+<div class="container py-4">
+<ul class="productList-hero_menu align-items-start justify-content-start">
+<li class="item active">
+<a href="#" class="see-hfb auto_plp_hero_menu_hfb_href text-nowrap" data-code="" data-url="">Todos los productos (1)</a>
+</li>
+<li class="item ">
+<a href="#" class="see-hfb auto_plp_hero_menu_hfb_href text-nowrap" data-code="1001" data-url="&amp;hfb[]=1001">Sala (1)</a>
+</li>
+<li class="item ">
+<a href="#" class="see-hfb auto_plp_hero_menu_hfb_href text-nowrap" data-code="1004" data-url="&amp;hfb[]=1004">Espacio de trabajo (1)</a>
+</li>
+<li class="item ">
+<a href="#" class="see-hfb auto_plp_hero_menu_hfb_href text-nowrap" data-code="1018" data-url="&amp;hfb[]=1018">Organización en el hogar (1)</a>
+</li>
+</ul>
+</div>
+</section>
+<div class="container">
+</div>
+<div class="inspiration-tabs_products-filters__js">
+<div id="range_data">
+<input type="hidden" readonly name="id_custom_page" value="" id="filterCustomPage"/>
+<input type="hidden" readonly name="complete" value="" id="filterComplete"/>
+<input type="hidden" readonly value="" id="filterHFB"/>
+<input type="hidden" readonly value="" id="filterRA"/>
+<input type="hidden" readonly value="" id="filterPA"/>
+<input type="hidden" readonly value="00263850" id="filterSearchQ"/>
+<input type="hidden" readonly value="search" id="filterListName"/>
+<input type="hidden" readonly name="fg" value="" id="filterFG"/>
+</div>
+</div>
+<div class="container">
+<div class="row productList">
+<div class="pagination col-12 px-0">
+<div class="container px-3">
+<div class="row mb-3">
+<div class="col d-flex flex-wrap justify-content-end position-relative">
+<div id="filterCheckboxes">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="products_list w-100 d-flex flex-wrap">
+<div id="art_00263850" class=" col-6 col-md-4 col-lg-3  p-0 itemBlock" data-previous="00263850">
+<div class="card px-0 px-md-3 ">
+<div id="cd_00263850" class="card-header">
+<a href="/puertorico/es/pd/billy-librero-31-1-2-x11-x79-1-2-blanco-art-00263850">
+<div class="itemBadges">
+</div>
+<div class="productImg">
+<div class="alternativeContainer">
+<div class="default_image lazyload" data-bg="https://static.ikea.pr/assets/images/255/0625599_PE692385_S3.jpg?v=480" style="background-image:
+                                       url('/webroot/img/icons/noImage.png')" onmouseover="imgHover(this)" onmouseout="imgOut(this)"></div>
+<div class="alternative_image lazyload" data-bg="https://static.ikea.pr/assets/images/945/0394567_PE561390_S3.jpg?v=480" style="background-image:
+                                       url('/webroot/img/icons/noImage.png')"></div>
+</div>
+</div>
+</a>
+</div>
+<div class="card-body">
+<div class="itemInfo ">
+<div class="itemBadges">
+</div>
+<a href="/puertorico/es/pd/billy-librero-31-1-2-x11-x79-1-2-blanco-art-00263850" class="itemName ">
+<div class="d-flex align-items-center flex-wrap itemTitle">
+<h6 class="display-7 mr-2 mb-0" data-title>
+BILLY
+</h6>
+</div>
+</a>
+<div class="itemFacts mb-2">Librero,
+<span class="validDesignColor">
+<span class="itemValidDesign">blanco</span>
+</span>
+</div>
+<div class="itemPriceBox">
+<div class="itemPrice-wrapper">
+<p class="itemPrice itemNormalPrice display-6 mr-3">
+<span data-price="109"><span class="currency">$</span>109</span>
+</p>
+<div class="energyTag">
+</div> </div>
+</div>
+</div>
+<p class="itemMore pb-1">Más opciones disponibles</p>
+</div>
+<div class="card-footer d-flex">
+<div class="icon-group d-flex mt-2">
+<button class="btn btn-outline-gray-medium btn-icon d-none d-md-flex sidenavItem quickLook mr-2 auto_plp_quickview" data-item="00263850" data-action="sidenav">
+<span class="fundament-icon-visibility-show-24"></span>
+<span class="btn-label-text">Vista rápida</span>
+</button>
+<button data-action="buy" data-item="00263850" class="quickAdd ecom_atc btn-yellow btn btn-icon ecom_atc auto_plp_add">
+<span class="icon fundament-icon-buy-online-add-24"></span>
+</button>
+</div>
+<div class="icon-group d-flex">
+</div>
+</div>
+</div>
+<script src='/webroot/conjurer/js/itemHoverimage.js?v=480' type='text/javascript'></script>
+</div>
+</div>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/js/Agrupate.js,qv=480.pagespeed.jm.QpFy5lsaQh.js' type='text/javascript'></script>
+<script>
+        
+        $(document).ready(function () {
+
+            hero_buttons();
+            
+                        ge.viewItemList([{"id":"002.638.50","name":"librero","brand":"BILLY","category":"sala/muebles-de-sala/librerias","variant":"blanco","price":"109","list_name":"search","list_position":1}]);
+
+        });
+
+        $(window).resize(function () {
+            hero_buttons(true);
+
+        });
+
+        function hero_buttons(resized = false) {
+
+            var viewport_size = $(window).width();
+            var columns = 0;
+
+            if (viewport_size >= 992) {
+                columns = 4;
+            }
+
+            if (viewport_size >= 768 && viewport_size <= 991) {
+                columns = 3;
+            }
+
+            if (viewport_size <= 767) {
+                columns = 2;
+            }
+
+            var size_column = 4;
+
+
+
+            $(".card").removeClass("button_up");
+
+            if (columns == 4) {
+                
+                var added_insp = 0;
+                var inspirations = $('*[data-inspiration]').remove();
+                $.each(inspirations, function (key, value) {
+                    var position = $(value).data("inspiration");
+                    var column = Math.floor(parseInt(position) % size_column);
+                    
+                    $(`.products_list > div:nth-child(${(position + 1) - added_insp})`).before(value); 
+                    
+                    if (column == 0) {
+                        $(value).next().find(".card").addClass("button_up");
+                        $(value).next().next().find(".card").addClass("button_up");
+                    } else if (column == 1) {
+                        $(value).prev().find(".card").addClass("button_up");
+                        $(value).next().find(".card").addClass("button_up");
+                    } else if (column == 2) {
+                        $(value).prev().find(".card").addClass("button_up");
+                        $(value).prev().prev().find(".card").addClass("button_up");
+                    }
+                    added_insp ++;
+                });
+            } else {
+                var number = 0;
+                var inspirations = $('*[data-inspiration]').remove();
+
+                $.each(inspirations, function (key, value) {
+                    let position = $(value).data("inspiration");
+                    let fila = (position == 0) ? 0 : Math.ceil(position / 3);
+                    if (fila == 0) {
+                        $(`.products_list > div:nth-child(1)`).before(value);
+                    } else {
+                        $(`.products_list > div:nth-child(${fila * columns + number})`).after(value);
+                    }
+                    //console.log(fila);
+                    number++;
+                });
+            }
+        }
+        
+        if ($.cloudinary != undefined) {
+            $.cloudinary.responsive();
+        }
+        
+    </script>
+</div>
+<a id="btn-back-to-top"></a>
+</div>
+</div>
+<div id="footer" class="footer-container bg-light pb-5 pb-lg-2">
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/layout/A.footerMainLinks.css,qv=480.pagespeed.cf.dWSO2-I5YE.css'/>
+<footer class="container footerMainLinks">
+<div class="row">
+<div class="col-12 col-md-12 col-lg-4 mb-md-4 mb-lg-0">
+<div class="row d-flex flex-lg-column">
+<div class="col-12 col-md-6 col-lg-12">
+<div class="mb-3">
+<h5 class="display-8 mb-4">
+App IKEA Inspire
+</h5>
+<div class="row">
+<div class="col-10 col-md-10 col-lg-12 col-xl-10">
+<p class="mb-2">Compra dónde y cuándo quieras, escanea las etiquetas de tus artículos favoritos, accede fácilmente a tus cheques IKEA Family y ahora ¡diseña tu espacio en realidad aumentada!</p>
+<p class="mb-2"><a class="link text-underline" href="/puertorico/es/app-ikea-inspire">Descubre todo lo que puedes hacer con IKEA Inspire</a></p>
+</div>
+</div>
+<div class="row">
+<div class="col-12 col-xl-11 d-flex">
+<a class="download-app-link mr-2" href="https://apps.apple.com/app/ikea-inspire-puerto-rico/id1613182217" target="_blank">
+<img loading="lazy" class="downloadAppIcon img-fluid" src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/img/logos/app_store_es.svg?v=480" alt="App store - Inspire IKEA">
+</a>
+<a class="download-app-link mr-2" href="https://play.google.com/store/apps/details?id=pr.ikea.android" target="_blank">
+<img loading="lazy" class="downloadAppIcon img-fluid" src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/img/logos/google_play_es.svg?v=480" alt="Google Play - Inspire IKEA">
+</a>
+</div>
+</div>
+<hr class="my-4 d-md-none">
+</div> </div>
+<div class="col-12 col-md-6 mt-lg-4 col-lg-12">
+<div class="mb-3 mb-md-5">
+<h5 class="display-8 mb-4">IKEA Family</h5>
+<div class="row">
+<div class="col-10 col-md-10 col-lg-12 col-xl-10">
+<p class="mb-2">Únete al Club IKEA Family y disfruta de precios y ofertas exclusivas, atención personalizada, un 5% en todas tus compras en IKEA y muchas más ventajas. </p>
+<p class="mb-2"><a class="link text-underline" href="/puertorico/es/ikeafamily" target="">Conoce más sobre el Club IKEA Family</a></p>
+<button class="btn btn--family btn--small my-2" data-action="sidenav" data-type="ikeaFamilyRegister">Únete a IKEA Family</button>
+</div>
+</div>
+<hr class="my-4 d-md-none">
+</div>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-12 col-lg-8">
+<div class="row">
+<div class="col-12 col-md-4">
+<div class="mb-3">
+<h5 class="display-8 mb-4 menu-title">IKEA</h5>
+<ul class="list-unstyled menu-content">
+<li>
+<a href="/puertorico/es/products">Todos los productos IKEA</a>
+<li>
+<li>
+<a href="/puertorico/es/catalogos">Catálogos IKEA</a>
+<li>
+<li>
+<a href="inspirations">Inspiración IKEA</a>
+<li>
+<li>
+<a href="offeritems">Ofertas</a>
+<li>
+<li>
+<a href="planificadores">Programas de planificación</a>
+<li>
+<li>
+<a href="/puertorico/es/sostenibilidad-y-medioambiente">Sostenibilidad y medio ambiente</a>
+<li>
+<li>
+<a href="/puertorico/es/informacion/ikea-informa">Seguridad en el hogar</a>
+<li>
+<li>
+<a href="/puertorico/es/about/trabaja-con-nosotros">Trabaja con nosotros</a>
+<li>
+<li>
+<a href="/puertorico/es/page/quienes-somos">Quiénes somos</a>
+<li>
+</ul>
+<hr class="my-4 d-md-none">
+</div> </div>
+<div class="col-12 col-md-4">
+<div class="mb-3">
+<h5 class="display-8 mb-4 menu-title">Servicios</h5>
+<ul class="list-unstyled menu-content">
+<li>
+<a href="/puertorico/es/informacion/especialista">Especialista IKEA</a>
+<li>
+<li>
+<a href="/puertorico/es/financiacion">Financia tu compra</a>
+<li>
+<li>
+<a href="/puertorico/es/page/servicios-generales">Nuestros servicios</a>
+<li>
+<li>
+<a href="/puertorico/es/tu-cocina/servicios">Servicios para tu cocina</a>
+<li>
+<li>
+<a href="/puertorico/es/informacion/transporte-y-recogida">Transporte y recogida</a>
+<li>
+</ul>
+<hr class="my-4 d-md-none">
+</div> </div>
+<div class="col-12 col-md-4">
+<div class="mb-3">
+<h5 class="display-8 mb-4 menu-title">Atención al cliente</h5>
+<ul class="list-unstyled menu-content">
+<li>
+<a href="informacion/contactar">Contacta con nosotros</a>
+<li>
+<li>
+<a href="instrucciones-de-ensamblaje">Instrucciones de montaje</a>
+<li>
+<li>
+<a href="/puertorico/es/sobre-nuestros-productos">Ayuda sobre nuestros productos</a>
+<li>
+<li>
+<a href="/puertorico/es/consejos-de-compra-online">Consejos de compra online</a>
+<li>
+<li>
+<a href="/puertorico/es/informacion/condiciones">Antes de comprar, debes saber...</a>
+<li>
+<li>
+<a href="/puertorico/es/informacion/como-comprar-online">FAQ compra online</a>
+<li>
+<li>
+<a href="/puertorico/es/informacion/garantias">Programa de garantías</a>
+<li>
+<li>
+<a href="/puertorico/es/informacion/retirada-de-productos">Advertencias de seguridad y retiradas de productos</a>
+<li>
+<li>
+<a href="/puertorico/es/informacion/fe-de-erratas">Fe de erratas</a>
+<li>
+<li>
+<a href="/puertorico/es/anytime-feedback">Déjanos tu opinión</a>
+<li>
+</ul>
+<hr class="my-4 d-md-none">
+</div>
+</div>
+</div>
+</div>
+<div class="col-12 col-lg-4 socialSection">
+<a class="socialIcon" href="https://www.facebook.com/IKEA-Puerto-Rico-266656806762947/" target="_blank">
+<span class="icon fundament-icon-sm-facebook"></span> </a>
+<a class="socialIcon" href="https://www.instagram.com/ikeapuertorico/" target="_blank">
+<span class="icon fundament-icon-sm-instagram"></span> </a>
+<a class="socialIcon" href="https://www.pinterest.es/ikeapuertorico/" target="_blank">
+<span class="icon fundament-icon-sm-pinterest"></span> </a>
+<a class="socialIcon" href="https://twitter.com/IKEApuertorico" target="_blank">
+<span class="icon fundament-icon-sm-twitter"></span> </a>
+<a class="socialIcon" href="https://www.youtube.com/user/IKEAPuertoRico" target="_blank">
+<span class="icon fundament-icon-sm-youtube"></span> </a>
+<a class="socialIcon" href="https://www.tiktok.com/@ikeapuertorico" target="_blank">
+<span class="icon fundament-icon-sm-tiktok"></span> </a>
+</div>
+</div>
+</footer>
+<!-- Grid row -->
+<footer class="container footerMain">
+<div class="row mt-2 mb-4">
+<div class="col-12 col-md-6 footerMainPayments mt-2 mb-3">
+<style media='all'>.footerMainPayments .footerTitle{font-size:.85715rem}.footerMainPayments .paymentMethods{margin:0 0 0 0;display:-webkit-box;display:-ms-flexbox;display:flex}.footerMainPayments .paymentMethods .payment-data-wrapper{border-radius:4px;padding:0;line-height:0;border:1px solid #dfdfdf;background-color:inherit;height:2rem;width:auto;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;justify-content:center;align-items:center;overflow:hidden}.footerMainPayments .paymentMethods .payment-data-wrapper+.payment-data-wrapper{margin-left:.75rem}.footerMainPayments .paymentMethods img.paymentData{height:100%;width:auto;max-width:100%;max-height:100%;margin:0;padding:0}</style>
+<footer class="footerMainPayments d-flex align-items-center">
+<span class="fs-sm mr-3 d-none d-md-inline-block">Opciones de pago:</span>
+<style media='all'>.paymentMethods{margin:0;display:-webkit-box;display:-ms-flexbox;display:flex}.paymentMethods .payment-data-wrapper{border-radius:4px;padding:0;line-height:0;border:1px solid #dfdfdf;background-color:inherit;height:1.75rem;width:auto;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;justify-content:center;align-items:center;overflow:hidden}.paymentMethods .payment-data-wrapper+.payment-data-wrapper{margin-left:.75rem}.paymentMethods img.paymentData{height:100%;width:auto;max-width:100%;max-height:100%;margin:0;padding:0}</style>
+<div class="paymentMethods">
+<span class="payment-data-wrapper">
+<img class="paymentData visa" src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/img/payment_partners/visa.svg?v=480" alt="Visa">
+</span>
+<span class="payment-data-wrapper">
+<img class="paymentData masterCard" src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/img/payment_partners/master-card.svg?v=480" alt="Master Card">
+</span>
+</div>
+</footer>	</div>
+<div class="col-12 col-md-6 webSelectors">
+<div class="d-flex flex-column-reverse d-lg-flex flex-lg-row">
+<span class="d-flex">
+<ul class="navbar-nav siteSelector auto_head_siteSelector">
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle pl-0" href="#" id="siteSelector" role="button" data-toggle="dropdown">
+Puerto Rico
+</a>
+<div class="dropdown-menu" aria-labelledby="siteSelector">
+<a class="dropdown-item" data-action="changeShop" data-name="mayaguez" href="#">Mayagüez</a>
+</div>
+</li>
+</ul>
+<ul class="navbar-nav langSelector auto_head_langSelector">
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle pl-0" href="#" id="langSelector" role="button" data-toggle="dropdown">Español</a>
+<div class="dropdown-menu" aria-labelledby="langSelector">
+<a class="dropdown-item" href="#" data-locale="en_us" data-action="changeLocale"><span>English</span></a>
+<a class="dropdown-item" href="#" data-locale="es_pr" data-action="changeLocale"><span>Español</span></a>
+</div>
+</li>
+</ul>	</span>
+</div>
+</div>
+</div>
+</footer>
+<style media='all'>.footer-container{margin-top:4rem}@media (max-width:575.98px){.footer-container>.container{padding-right:20px;padding-left:20px}.footer-container{margin-top:4rem}}.footerMainLegal{border-top:1px solid #dfdfdf;margin-top:0;padding-top:2.5rem;margin-bottom:2rem;font-size:.85715rem}@media (max-width:991.98px){.footerMainLegal .title{margin-top:1rem}}.footerMainLegal .linksContainer>a{color:#111;margin:0 .5rem 1rem .5rem;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}@media (max-width:575.98px){.footerMainLegal .linksContainer>a{margin:0 .5rem .5rem .5rem;padding-top:0;padding-bottom:0}}.footerMainLegal .linksContainer span.separator{display:inline-block;height:1em;margin-bottom:-.2em;border-right:1px solid #111}.footerMainLegal.sticky__box-spacer{margin-bottom:5rem!important}.footerMainLegal .linksContainer{margin-left:-.5rem}.footerMainLegal .linksContainer span.separator{display:none}</style>
+<footer class="footerMainLegal footer-container">
+<div class="container">
+<div class="d-flex flex-column flex-lg-row justify-content-start justify-content-lg-between">
+<div class="linksContainer">
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="/puertorico/es/legal/condiciones-generales">Aviso legal y condiciones de compra</a>
+</span>
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="/puertorico/es/legal/politica-de-cookies">Política de cookies</a>
+</span>
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="/puertorico/es/legal/proteccion-de-datos">Política de protección de datos</a>
+</span>
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="/puertorico/es/legal/politica-de-privacidad">Política de privacidad</a>
+</span>
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="/puertorico/es/legal/promociones-y-bases-legales">Condiciones de las promociones</a>
+</span>
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="/puertorico/es/legal/responsabilidad-precios">Responsabilidad en precios</a>
+</span>
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="/puertorico/es/legal/denuncias">Canal de denuncias</a>
+</span>
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="informacion/devoluciones">Política de devoluciones</a>
+</span>
+<span class="payment-data-wrapper">
+<a class="mx-2 text-nowrap" href="/puertorico/es/informacion/politica-mascotas">Política de mascotas</a>
+</span>
+</div>
+<p class="title text-nowrap">&copy; Inter IKEA Systems B.V. 1999-2023</p>
+</div>
+</div>
+</footer> </div>
+<script src="https://static.islas.ikea.es/assets/modules/vendors/vue/vue.min.js"></script>
+<script src="https://static.islas.ikea.es/assets/modules/pws/personal-web-shopper.js?v=18"></script>
+<script>$(document).ready(function(){if(location.href.indexOf("islandselector")<0&&typeof Main.getCookie==="function"&&Main.getCookie('client')!=='app'){var pws=document.createElement('personal-web-shopper');pws.setAttribute('groups','7,8,15');pws.setAttribute('bounce_duration','6000');pws.setAttribute('policy_url','/legal/privacy-policy');document.body.appendChild(pws);}});</script>
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body">
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<div id="modalInformation" class="modal-information modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-body">
+<h2 class="text-center pb-4" data-title></h2>
+<div class="scrollable" data-content></div>
+<div data-hidden></div>
+</div>
+<div class="modal-footer">
+<div class="container">
+<div class="row">
+<div class="col-12 d-flex justify-content-center align-items-center">
+<button type="button" data-dismiss="modal" class="modalButtonClose" aria-label="Close">Cerrar</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="modalConfirmation" class="modal-confirmation modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-body">
+<h2 class="text-center" data-title></h2>
+<div class="content" data-content></div>
+<div data-hidden></div>
+</div>
+<div class="modal-footer">
+<div class="container">
+<div class="row">
+<div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+<button class="modalConfirmationButton btn btn-icon " data-action="modalConfirmation-cancel" data-dismiss="modal">
+<span class="icon left fa fa-angle-left"></span>
+<span>Cancelar</span>
+</button>
+<button class="modalConfirmationButton btn btn-icon primary" data-id="156" data-action="modalConfirmation-delete">
+<span>Borrar dirección</span>
+<span class="icon right fa fa-angle-right"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="modalUserMenu">
+<div class="modal-dialog modal-md p-10">
+<div class="modal-content p-10">
+<div class="modal-header" style="border: none;"></div>
+<div class="modal-body">
+<ul id="account-menu" class="nav nav--list">
+<li class="nav-item">
+<a class="nav-link active" id="mydashboard-tab" data-toggle="tab" href="#mydashboard" role="tab" aria-controls="mydashboard" aria-selected="true">Mi cuenta</a>
+</li>
+<li class="nav-item nav-item-submenu">
+<h3 class="section-title">Compras</h3>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Mis pedidos</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="discounts-tab" data-toggle="tab" card-type="ikeamember" href="#familyvoucher" role="tab" aria-controls="familyvoucher" aria-selected="false">Mis descuentos</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="false">Mis listas</a>
+</li>
+<li class="nav-item nav-item-submenu " style="border-bottom: 0px">
+<h3 class="section-title" style="display: block !important">Ikea Family</h3>
+</li>
+<li class="nav-item ">
+<a class="nav-link" id="familycard-tab" data-toggle="tab" href="#familycard" role="tab" aria-controls="familycard" aria-selected="false">Mi tarjeta</a>
+</li>
+<li class="nav-item ">
+<a class="nav-link" id="familymov-tab" data-toggle="tab" href="#familymov" role="tab" aria-controls="familymov" aria-selected="false">Movimientos</a>
+</li>
+<li class="nav-item ">
+<a class="nav-link" id="familyvoucher-tab" data-toggle="tab" href="#familyvoucher" role="tab" aria-controls="familyvoucher" aria-selected="false">Cheques Family</a>
+</li>
+<li class="nav-item nav-item-submenu d-none" style="border-bottom: 0px">
+<h3 class="section-title" style="display: block !important">IKEA para tu negocio</h3>
+</li>
+<li class="nav-item d-none">
+<a class="nav-link" id="businesscard-tab" data-toggle="tab" card-type="businessmember" href="#familycard" role="tab" aria-controls="familycard" aria-selected="false">Mi tarjeta</a>
+</li>
+<li class="nav-item d-none">
+<a class="nav-link" id="businessmov-tab" data-toggle="tab" card-type="businessmember" href="#familymov" role="tab" aria-controls="familymov" aria-selected="false">Movimientos</a>
+</li>
+<li class="nav-item d-none">
+<a class="nav-link" id="businessvoucher-tab" data-toggle="tab" card-type="businessmember" href="#familyvoucher" role="tab" aria-controls="familyvoucher" aria-selected="false">Cheques Business</a>
+</li>
+<li class="nav-item nav-item-submenu">
+<h3 class="section-title">Perfil</h3> </li>
+<li class="nav-item">
+<a class="nav-link" id="yourdetails-tab" data-toggle="tab" href="#yourdetails" role="tab" aria-controls="yourdetails" aria-selected="true">Información Personal</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="subscriptions-tab" data-toggle="tab" href="#subscriptions" role="tab" aria-controls="subscriptions" aria-selected="false">Suscripciones</a>
+</li>
+<li class="nav-item">
+<a class="nav-link auto_login_logout" href="" data-action="logout">
+<span class="icon mr-2">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 22H3V2h9v2H5v16h7v2z" fill="#111"/>
+<path d="m16.1715 11-3.2429-3.243 1.4142-1.4142 5.6568 5.6568-5.6568 5.6569-1.4142-1.4142L16.1708 13H7.9999v-2h8.1716z" fill="#111"/>
+</svg>
+</span>
+Cerrar sesión </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<link rel='stylesheet' media='all' href='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/css/layout/A.headerMain.css,qv=480.pagespeed.cf.RoM_ULr9cL.css'/>
+<!-- Modal -->
+<div class="modal fade" id="cartChanges" tabindex="-1" role="dialog" aria-labelledby="cartChangesLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close flushCartChanges" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row ml-auto mr-auto text-center">
+<div class="col-12" data-box="initial">
+<h2 class="display-7">Cambio de tienda</h2>
+</div>
+</div>
+</div>
+<div class="modal-footer d-flex justify-content-center pb-4 border-0">
+<button type="button" class="btn btn-small btn-blue flushCartChanges" data-dismiss="modal">
+<span>Ok</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>document.addEventListener('DOMContentLoaded',(e)=>{$('.flushCartChanges').click(function(){$.ajax({type:'GET',url:'/Shoppingcart/flushCartChanges',success:function(result){},timeout:10000})});});</script>
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modalAskShop">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title"></h4>
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">
+<div class="col-12 text-center">
+<h5 class="display-6 mb-3 mt-3"> ¡Hola!</h5>
+<p class="lead text-gray mb-0">Parece que tu web habitual es IKEA <span class="shopNameSession"></span></p>
+<p class="lead text-gray">¿qué te gustaría hacer?</p>
+<div class="col-12">
+<button id="btnChangeShopModal" class="btn btn-action-blue mt-4 px-4">Ir a IKEA <span class="ml-1 shopNameSession"></span></button>
+</div>
+<div class="col-12">
+<button id="keepMeHere" class="btn bold my-3 mx-auto d-block py-3 px-4 bg-white border-0 text-blue-IKEA">
+Me gustaría quedarme en IKEA&nbsp;<span class="shopNameReferer text-nowrap"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="favourites-dialog black-bg shadow" data-content="dialog">
+<div class="arrow"></div>
+<div class="dialog-content">
+<div class="close-wrap"><span class="close-btn" aria-label="Close">+</span></div>
+<div class="listitems"></div>
+</div>
+<div class="dialog-footer">
+<p class="text d-none" data-actiontype="add">Producto añadido a <a href="/puertorico/es/client/account/favourites">tus favoritos</a></p>
+<p class="text d-none" data-actiontype="remove">
+Producto eliminado de
+<a href="/puertorico/es/client/account/favourites">tus favoritos</a></p>
+</div>
+</div>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/bootstrap/docs.min.js,qv=480.pagespeed.jm.iRG9Dl5YRy.js' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/bootstrap/popper.min.js,qv=480.pagespeed.jm.bkCCOmq-wV.js' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/bootstrap/bootstrap.min.js,qv=480.pagespeed.jm.Rd0OyYl9HU.js' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/intltelinput/intlTelInput.min.js,qv=480.pagespeed.jm.XWzxfg8f3f.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/intltelinput/utilsV2.js,qv=480.pagespeed.jm.7rO9AJC68z.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/datepicker/datepicker.min.js,qv=480.pagespeed.jm.TrNLEqqkQY.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/datepicker/i18n/datepicker.es_pr.js,qv=480.pagespeed.jm.T3XubCE5dg.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/select2.full.js,qv=480.pagespeed.jm.ci-fkcGGwq.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/select2.above.js,qv=480.pagespeed.jm.vSdqyGom2q.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/Phone.js,qv=480.pagespeed.jm.2HXg3uCGV1.js' type='text/javascript'></script>
+<script src='/webroot/js/Sidenav.js?v=480' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/js/favorites.js,qv=480.pagespeed.jm.RiO44NYoN5.js' type='text/javascript' defer></script>
+<script src='/webroot/conjurer/js/Modal.js?v=480' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/url.js,qv=480.pagespeed.jm.zFtHv9QgkO.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/Main.js,qv=480.pagespeed.jm.8uAfpVw_Fo.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/busyLoad/busyLoad.js,qv=480.pagespeed.jm.HC8vyGxWCO.js' type='text/javascript'></script> <script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/icheck/icheck.min.js,qv=480.pagespeed.jm.FyEPA9IFxB.js' type='text/javascript' defer></script> <script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/Breadcrumb.js,qv=480.pagespeed.jm.eBUOSPM04r.js' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/anchorOffset.js,qv=480.pagespeed.jm.eo_YkQjq6g.js' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/Logout.js,qv=480.pagespeed.jm.l8HvVE_v8Z.js' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/js/Page.js,qv=480.pagespeed.jm.1aLpJ9xnlC.js' type='text/javascript'></script>
+<script src='/webroot/js/vendor/moment-with-locales.min.js?v=480' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/checkMedia.js,qv=480.pagespeed.jm.uhzlXDOgv3.js' type='text/javascript' defer></script> <script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/parallax/parallax.js,qv=480.pagespeed.jm.tRRAvIpTDh.js' type='text/javascript' defer></script>
+<script src='/webroot/js/vendor/GEcommerce.js?v=480' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/cloudinary/jquery.cloudinary.js,qv=480.pagespeed.jm.1qyw_Q9WqS.js' type='text/javascript' defer></script>
+<script type="text/javascript">window.currentLocale="es_pr";$(document).ready(function(){$.cloudinary.responsive();if($('body')[0].hasAttribute('data-loading'))$('body').removeAttr('data-loading');moment.updateLocale('lt',{longDateFormat:{L:"dddd, MMMM Do"}});moment.updateLocale('en',{longDateFormat:{L:"dddd, Do MMMM"}});moment.locale("es");if(window.matchMedia('(max-width: 767.99px)')){$("#footer .footerMainLinks H5").click(function(){$(this).toggleClass("show");});}})</script>
+<script>function fixedHeader(){$('header.headerMain').css({"position":"fixed"});var headerHeight=$('.headerMain').outerHeight();var mainNavHeight=$('.mainNav').outerHeight();var breadcrumbContainerHeight=$('.breadcrumbContainer').outerHeight(true)||0;var heightHMT=0;var popupInspireHeight=$('#popupInspire').outerHeight(true)||0;var topBannerHeight=$('#topBanner').outerHeight(true)||0;if(!window.matchMedia("(min-width: 991px)").matches){heightHMT=$('#headerMainToggler').outerHeight();}if(!window.matchMedia("(min-width: 991.98px)").matches){$('#contentWrapper').css('padding-top',mainNavHeight+breadcrumbContainerHeight+topBannerHeight+popupInspireHeight+15+'px');}else{$('#contentWrapper').css('padding-top',headerHeight+21-heightHMT);}if($('#checkoutFooter').length>0){var windowHeight=window.innerHeight;var bodyHeight=$('body').height();$('#contentWrapper').css('padding-top',headerHeight);if(bodyHeight<windowHeight){$('#checkoutFooter').addClass("fixed-bottom");}else{$('#checkoutFooter').removeClass("fixed-bottom");}}}$(function(){fixedHeader();$('[data-toggle="tooltip"]').tooltip();validateURL.main('/puertorico/es',true);});$(window).on('load resize',function(e){fixedHeader();});$(window).scroll(function(){if($(window).scrollTop()>$('#topBanner').outerHeight()){$('#topBanner').fadeOut(800);}else{$('#topBanner').fadeIn(500);}});$.busyLoadSetup({animation:"fade",animationDuration:"fast",background:"rgba(255,255,255, 0.8)",text:"Cargando...",textPosition:"bottom",textColor:"#000000",color:"#000000",fontawesome:"busy-load-spinner"});</script>
+<script>var ge=null;enableGtag();if(typeof Cookiebot!=='undefined'){function CookiebotCallback_OnAccept(){if(Cookiebot.consent.statistics){enableGtag();}}}function enableGtag(){var isActive=false;if(typeof Cookiebot!=='undefined'){if(Cookiebot.consent.statistics){isActive=false;}}if(ge!=null){ge.setIsActive(isActive);}else{ge=new GEcommerce(isActive);}}</script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/jquery-ui.min.js,qv=480.pagespeed.jm.kCNLEvPHkN.js' type='text/javascript'></script> <script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/Form.js,qv=480.pagespeed.jm.s5onsMSSWg.js' type='text/javascript'></script>
+<script src='/webroot/conjurer/js/Searcher.js?v=480' type='text/javascript'></script>
+<script>Searcher.autocompleteTranslations={"SUGGESTIONS":"SUGERENCIAS","PRODUCT":"SUGERENCIAS","PA":"COINCIDENCIAS","SERIE":"SERIES","HFB":"TIPO","RA":"TIPO","PROMOTION":"PROMOCIONES","SUGGESTION":"SUGERENCIAS","CUSTOM":"PÁGINAS"};</script> <script src='/webroot/js/client/validate.js?v=480' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/slick/slick.min.js,qv=480.pagespeed.jm.7-LcV797cx.js' type='text/javascript'></script> <script src='/webroot/conjurer/js/client/loginClient.js?v=480' type='text/javascript'></script>
+<script src='/webroot/conjurer/js/client/register.js?v=480' type='text/javascript'></script>
+<script src='/webroot/conjurer/js/steps.js?v=480' type='text/javascript'></script>
+<script src='/webroot/conjurer/js/family/FamilySidebar.js?v=480' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/Messages.js,qv=480.pagespeed.jm.yAukyxBy_N.js' type='text/javascript'></script>
+<script type="text/javascript">Messages.addText('close','Cerrar');</script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/picturefill/picturefill.min.js,qv=480.pagespeed.jm.jODJQk8Ma2.js' type='text/javascript' defer></script>
+<script>document.createElement("picture");</script>
+<script src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/lazySizes/ls.rias.min.js.pagespeed.jm.rtInH54Lk4.js" async></script>
+<script src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/lazySizes/lazysizes.min.js.pagespeed.jm.ecpCTIaZ4W.js" async></script>
+<script src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/lazySizes/ls.unveilhooks.min.js.pagespeed.jm.id0_2A_4ds.js" async></script>
+<script src="https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/lazySizes/ls.optimumx.min.js.pagespeed.jm.W9Y7fS_xQq.js" async></script>
+<script src='/webroot/js/plugins/polygons/vendor/raphaeljs/raphael.min.js?v=480' type='text/javascript' defer></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/plugins/polygons/Polygon.js,qv=480.pagespeed.jm.sAop5D4hKZ.js' type='text/javascript' defer></script>
+<style media='all'>.polygon-container{position:relative}.polygon-container svg{width:auto;padding:0 10px;position:absolute!important;left:50%!important;transform:translate(-50%,0)}.polygon-container svg path,.polygon-container svg image{opacity:.8;transition:opacity .3s ease-in-out;-webkit-transition:opacity .3s ease-in-out}.polygon-container svg path:hover,.polygon-container svg image:hover{cursor:pointer}.tooltip.polygon-tooltip.show{opacity:1;max-width:300px}.tooltip.polygon-tooltip .tooltip-inner{max-width:300px;max-height:none;color:#212529;box-shadow:0 0 5px 2px rgba(0,0,0,.4);background-color:#fff}.tooltip.polygon-tooltip .arrow{display:none}#polygonTooltipMobile{z-index:1;position:fixed;left:0;right:0;bottom:0;height:auto;box-shadow:0 0 5px 2px rgba(0,0,0,.4);background-color:#fff;display:block;opacity:0;transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out}#polygonTooltipMobile.show{opacity:1}#polygonTooltipMobile .polygonTooltipContent{padding:10px 20px;max-width:300px;margin:auto}#polygonTooltipMobile .polygonTooltipClose{z-index:1;position:absolute;right:0;padding:10px}.tooltip-content img{max-width:100%;height:auto;max-height:110px;margin:auto}@media (min-width:992px){#polygonTooltipMobile{display:none}}</style>
+<div id="polygonTooltipMobile" class="css_cojurer_mod">
+<div class="polygonTooltipClose"><i class="display-4 icon fundament-icon-cross-thin-24"></i></div>
+<div class="polygonTooltipContent">
+</div>
+</div>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/js/askShopModal.js,qv=480.pagespeed.jm.WFtbDLbHEJ.js' type='text/javascript' defer></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/grid.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/version.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/formatinf.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/errorlevel.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/bitmat.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/datablock.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/bmparser.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/datamask.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/rsdecoder.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/gf256poly.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/gf256.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/decoder.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/qrcode.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/findpat.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/alignpat.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/databr.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sitepoint-editors/jsqrcode@master/src/qr_packed.js"></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/plugins/image_searcher/ImageSearcher.js,qv=480.pagespeed.jm.vKO-WAvOR2.js' type='text/javascript'></script>
+<style media='all'>.image-search-sidenav .card-columns{-moz-column-count:2;column-count:2;-moz-column-gap:1rem;column-gap:1rem}.image-search-sidenav .card-columns .search_image{cursor:pointer}.image-search-sidenav .upload_image_warning{font-size:.75rem;padding:10px 20px}.image-search-sidenav .upload_image_button{padding:.5rem!important;height:auto;font-size:.9rem;display:block}.headerMenuProducts #header_searcher_desktop_input_container{flex-grow:1}.headerMenuProducts #imageSearchButton{margin-right:10px}.headerMenuProducts #imageSearchButton button{background-color:transparent;padding:0 10px;height:100%}.headerMenuProducts #imageSearchButton button .svg-icon{display:block}</style>
+<div id="imageSearchButton" class="input-group-append" style="display: none;">
+<button class="btn" type="button" data-action="openImageSearch" data-type="desktop">
+<svg class="svg-icon" width="24" height="24" aria-hidden="true">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.002 13a4 4 0 11-8 0 4 4 0 018 0zm-2 0a2 2 0 11-4 0 2 2 0 014 0z" fill="#111"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.443 4L7.586 7H3v13h18V7h-4.586l-1.857-3H9.443zm1.114 2h2.886L15.3 9H19v9H5V9h3.7l1.857-3z" fill="#111"></path>
+</svg>
+</button>
+</div>
+<script src='/webroot/conjurer/js/Filter.js?v=480' type='text/javascript'></script>
+<script>$(document).ready(function(){Filter.isMetric=Filter.main();});</script>
+<script src='/webroot/js/vendor/jqueryRange/jqueryRange.min.js?v=480' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/vendor/ion.rangeSlider/ion.rangeSlider.min.js,qv=480.pagespeed.jm.bTPCnB3rfP.js' type='text/javascript'></script> <script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/selectAlternative.js,qv=480.pagespeed.jm.SW2gEwXNiM.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/js/quantityCounter.js,qv=480.pagespeed.jm.oetE8z2Mal.js' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/js/itemsHeader.js,qv=480.pagespeed.jm.2oIwzTiWsJ.js' type='text/javascript'></script>
+<script src='/webroot/conjurer/js/toggle.js?v=480' type='text/javascript'></script>
+<script src='https://d2ko4igzsg7f0j.cloudfront.net/webroot/conjurer/js/Agrupate.js,qv=480.pagespeed.jm.QpFy5lsaQh.js' type='text/javascript'></script>
+<script src='/webroot/conjurer/js/Shoppingcart.js?v=480' type='text/javascript'></script>
+</body>
+</html>

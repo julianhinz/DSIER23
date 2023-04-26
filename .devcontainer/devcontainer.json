@@ -9,7 +9,8 @@
 			// See more details about rocker/r-ver's derived images: https://github.com/rocker-org/rocker-versioned2
 			"BASE_IMAGE": "rocker/r-ver",
 			// Options
-			"ENABLE_JUPYTER": "false"
+		    "ENABLE_JUPYTER": "false",
+		    "BUILDKIT_INLINE_CACHE": "0"
 		}
 	},
 
