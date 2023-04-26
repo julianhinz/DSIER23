@@ -1,4 +1,5 @@
-wdir <- "~/work/Teaching/DSIER23/03-web-scraping-api/"
+# set path to wd ----
+wdir <- getwd()
 dir.create(file.path(wdir, "temp"), showWarnings = FALSE)
 dir.create(file.path(wdir, "output"), showWarnings = FALSE)
 
