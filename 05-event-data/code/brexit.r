@@ -42,7 +42,7 @@ data[, unique(`Trade Flow`)]
 data[, .N]
 
 # check trade zeros
-data[`Trade Flow Code` == 1, .N]
+data[`Trade Flow Code` == 2, .N]
 
 # check trade zeros
 data[, uniqueN(Reporter)] * data[, uniqueN(Partner)] * data[, uniqueN(Commodity)] 
@@ -54,8 +54,8 @@ dir.create(file.path(wdir, "temp"), showWarnings = FALSE)
 # read all files
 files = list.files("input/monthly_hs2", full.names = T)
 
-f = files[1]
-# for (f in files) {
+# f = files[1]
+for (f in files) {
     print(f)
 
     # load
@@ -92,7 +92,7 @@ f = files[1]
            compress = "gzip",
            append = T)
 
-# }
+}
  
 # # alternativ
 # extract_data = function (...) {}
@@ -164,12 +164,19 @@ ggplot(plot_data) +
             subtitle = "UN Comtrade Data, 2019 – 2021")
 
 
-# regressions instead of eyeball econometrics
+# regressions instead of eyeball econometrics:all
+  # 1. regression export value from the 4 exporters toward EU destinations on Brexit treatment
+        # Identification: use variation within country and controlling for (monthly) time trends common to all 4 exporters.
+  # 2. the same as 1 but for exports towards all destinations? What do you expect? 
+  # 3. the same but including zeros and estimating via PPML
+
+
+
 reg_data = data[origin %in% c("GBR", "IRL", "ISL", "SWE") & destination %in% EU27, .(value = sum(value)), by = .(date, origin)]
 
 reg_data[, treatment := (origin == "GBR") * (date > ymd("2020-12-31"))]
 
-reg1 = feols(log(value) ~ treatment | date + origin, data = reg_data)
+reg1 = feols(log(value) ~ treatment_ot | date + origin, data = reg_data)
 fixest::etable(reg1)
 
 # all countries
@@ -177,10 +184,11 @@ reg_data = data[, .(value = sum(value)), by = .(date, origin)]
 
 reg_data[, treatment := (origin == "GBR") * (date > ymd("2020-12-31"))]
 
+# 162 zeros
 reg2 = feols(log(value) ~ treatment | date + origin, data = reg_data)
 
 reg3 = fepois(value ~ treatment | date + origin, data = reg_data)
-etable(reg1, reg2, reg3)
+# etable(reg1, reg2, reg3)
 
 # gravity
 reg_data = data[hs == "TOTAL", -c("hs", "flow")]
@@ -194,7 +202,6 @@ reg4 = feols(log(value) ~ treatment | origin_date + destination_date + origin_de
 
 reg5 = fepois(value ~ treatment | origin_date + destination_date + origin_destination, data = reg_data)
 
-rbind(reg1$coeftable[1], reg2$coeftable[1], reg3$coeftable[1], reg4$coeftable[1], reg5$coeftable[1])
 
 # hwo to create zeros (for on month only)
 data_zeros = data[date == ymd("2020-12-31") & hs == "TOTAL", -c("hs", "flow")]
