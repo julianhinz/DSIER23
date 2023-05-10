@@ -1,4 +1,6 @@
-wdir <- "~/work/Teaching/DSIER23/03-web-scraping-api/"
+
+# set path to wd ----
+wdir <- getwd()
 dir.create(file.path(wdir, "temp"), showWarnings = FALSE)
 dir.create(file.path(wdir, "output"), showWarnings = FALSE)
 
@@ -87,11 +89,7 @@ for (i in 1:nrow(regions)) {
             as.numeric()
 
         # extract currency from prefix or suffix
-        if (page_json$currencyCode != "") {
-            page_currency = page_json$currencyCode %>% str_trim()
-        } else {
-            page_currency = page_json$currencyCode %>% str_trim()
-        }
+        page_currency = page_json$currencyCode %>% str_trim()
     }
     # save price and currency to regions data.frame
     cat("price: ", page_price, "- currency: ", page_currency, "\n")
