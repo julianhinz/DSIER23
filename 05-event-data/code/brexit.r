@@ -176,7 +176,6 @@ reg_data = data[origin %in% c("GBR", "IRL", "ISL", "SWE") & destination %in% EU2
 
 reg_data[, treatment := (origin == "GBR") * (date > ymd("2020-12-31"))]
 
-reg1 = feols(log(value) ~ treatment_ot | date + origin, data = reg_data)
 fixest::etable(reg1)
 
 # all countries
