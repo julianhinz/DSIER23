@@ -1,15 +1,17 @@
 
 ### set wd to source file dir
-setwd("~/work/Teaching/Data_science_in_int_eco/05-Networks")
+setwd("~/work/Teaching/DSIER23/06-networks")
 
 library(tidyverse)
 library(igraph)
+library(data.table)
+
 set.seed(1234)
 edge_list <- tibble(from = c(1, 2, 2, 3, 4), to = c(2, 1, 4, 2, 1))
 node_list <- tibble(id = 1:4)
-g<- igraph::graph_from_data_frame(d = edge_list, vertices = node_list, directed = TRUE)
+g <- igraph::graph_from_data_frame(d = edge_list, vertices = node_list, directed = TRUE)
 
-plot(g, edge.arrow.size = 0.7)
+plot(g, edge.arrow.size = 0.7, vertex.label.cex=3)
 igraph::get.adjacency(g)
 
 # create the same network from the adj. matrix
@@ -39,8 +41,6 @@ full_graph <- make_full_graph(6, directed = FALSE, loops = FALSE)
 plot(full_graph)
 star <- make_star(6, mode = c("directed"), center = 1)
 plot(star, edge.arrow.size = 0.7)
-tree <- make_tree(6, children = 3, mode = c("undirected"))
-plot(tree)
 
 # generate a dataframe to represents all the edges of your bipartite ntw
 d <- data.frame(country=c("DEU", "DEU", "FRA", "FRA", "CAN","CAN", "USA"), 
@@ -61,7 +61,6 @@ plot(g,
      vertex.shape = shape[V(g)$type]
 )
 
-
 # Inspect the world trade network
 ## 1. BACI data available at http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37
 
@@ -71,9 +70,10 @@ conversion <- read_csv("country_codes_cepii_V2021.csv.gz") %>%
   select(isocode3=iso_3digit_alpha, i, j)
 
 ## Use 2017 Baci and attach conversion codes
-data_baci <- cbind()
-data_baci <- read_csv("BACI_HS07_Y2017_V202001_p1.csv.gz") %>% 
-    merge(read_csv("BACI_HS07_Y2017_V202001_p2.csv.gz"))
+file1 = "BACI_HS07_Y2017_V202001_p1.csv.gz"
+file2 = "BACI_HS07_Y2017_V202001_p2.csv.gz"
+
+data_baci <- rbind(fread(file1), fread(file2)) %>%
     filter(!(str_detect(k,"^98") | str_detect(k,"^99"))) %>% select(t,i,j,k,v) %>% 
     left_join(select(conversion,i,isocode3), by=c("i")) %>% mutate(i=isocode3) %>% 
     select(-isocode3) %>% 
@@ -103,6 +103,7 @@ data_baci %>% select(exp,imp) %>% distinct() %>% group_by(imp) %>%
 # compute closeness centrality
 trade_network <- data_baci %>% select(exp,imp) %>% distinct() %>% 
   graph_from_data_frame(., directed = TRUE) %>% na.omit()
+
 setNames(rownames_to_column(data.frame(closeness( # assign names coutry and centrality to the output
   trade_network,
   mode = c("in"),
@@ -119,7 +120,7 @@ random.seed(1234)
 adjm <- matrix(sample(0:5, 25, replace=TRUE,
                       prob=c(0.9,0.02,0.02,0.02,0.02,0.02)), ncol=5)
 g2 <- graph_from_adjacency_matrix(adjm, weighted=TRUE)
-plot(g2)
+plot(g2, vertex.label = V(g)$name, vertex.label.cex=3)
 E(g2)$weight
 
 # R read all what comes next the first 2 columns as attributes of edges, in this case they are weight
@@ -211,20 +212,3 @@ node_list <- tibble(id = 5:9)
 g<- igraph::graph_from_data_frame(d = edge_list, vertices = node_list, directed = TRUE)
 igraph::get.adjacency(g)
 plot(g, edge.arrow.size = 0.7)
-
-
-
-
-
-
-
-data <- read.csv("BACI_HS07_Y2017_V202001.csv.gz")
-
-data1 <- data %>% 
-  slice(seq(0.5 * n()))
-
-write.csv(data1,"BACI_HS07_Y2017_V202001_p1.csv" )
-write.csv(data2,"BACI_HS07_Y2017_V202001_p2.csv" )
-
-data2 <- data %>% 
-  slice(-seq(0.5 * n()))
