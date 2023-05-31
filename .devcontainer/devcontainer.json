@@ -1,43 +1,22 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/rocker-org/devcontainer-templates/tree/main/src/r-ver
 {
-	"name": "DSIER Docker",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"args": {
-			// Update VARIANT to pick a R version: 4, 4.1, 4.0
-			"VARIANT": "4",
-			// Start with a minimal image (rocker/r-ver) or a expanded image.
-			// See more details about rocker/r-ver's derived images: https://github.com/rocker-org/rocker-versioned2
-			"BASE_IMAGE": "rocker/r-ver",
-			// Options
-		    "ENABLE_JUPYTER": "false",
-		    "BUILDKIT_INLINE_CACHE": "0"
-		}
-	},
+	"name": "R (rocker/r-ver base)",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "ghcr.io/rocker-org/devcontainer/geospatial:4",
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-		"r.rterm.linux": "/usr/local/bin/radian",
-		"r.bracketedPaste": true,
-		"r.plot.useHttpgd": true,
-		"[r]": {
-			"editor.wordSeparators": "`~!@#%$^&*()-=+[{]}\\|;:'\",<>/?"
-		}
-	},
-
-	// Add the IDs of extensions you want installed when the container is created.
-	// For example, if you want to use vscode-jupyter, add "ms-toolsai.jupyter".
-	"extensions": [
-		"ikuyadeu.r",
-		"rdebugger.r-debugger",
-        "MS-vsliveshare.vsliveshare-pack"
-	],
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "R --version",
+	// "postCreateCommand": "R -q -e 'renv::install()'",
 
-	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "astronaut"
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }
