@@ -22,17 +22,11 @@ find_csv_name <- function(zipfile) {
   # Get a list of csv files in the dir
   files <- list.files(zipdir)
   files <- files[grep("\\.csv$", files)]
-  print(files)
   return(files)}
 
 # define a function that 
 # 1. pull all monthly data together, specify same format of input variables (the name of the company, the export value)
 # 2. group by company and get the firm level export value as a sum of the export by firm across product-destinations
-# Load the parallel package
-library(parallel)
-
-# Detect the number of cores
-num_cores <- detectCores()
 
 # Print the number of cores
 print(num_cores)
@@ -62,8 +56,9 @@ plot = ggplot(data = data_plot) +
   geom_vline(aes(xintercept = data_plot[, median(value)]), color  = "blue") +
   scale_x_log10(name = "Value in USD") +
   scale_y_continuous(name = "Number of firms")
-ggsave(plot, filename = "output/historgram_firmsize.png", width = 20, height = 10, units = "cm")
+ggsave(plot, filename = "output/historgram_firmsize2.png", width = 20, height = 10, units = "cm")
 
+# MODEL SELECTION: LOG - NORMAL, use Shapiro-Wilk and qq plot
 # Statistical tests: evaluate the goodness of fit for a log-normal distribution. 
 # One commonly used test is the Shapiro-Wilk test, which tests the null hypothesis 
 # that the data follows a normal distribution. Since if Y has a normal distribution, 
@@ -81,12 +76,31 @@ qqline(log(data_plot$value))
 
 qqplot(qnorm(ppoints(100)), qcauchy(ppoints(100)))
 
-# plot size distribution ---- 
 
+# MODEL SELECTION: PARETO usin
+# Create the Histogram
+data <- data_plot$value   # replace with your actual data
+
+hist_breaks <- 10^seq(from = min(log10(data)), to = max(log10(data)), length.out = 50)
+hist_data <- hist(data, breaks = hist_breaks, plot = FALSE)
+
+bin_centers <- (hist_data$breaks[-1] + hist_data$breaks[-length(hist_data$breaks)]) / 2
+log_bin_centers <- log10(bin_centers)
+log_counts <- log10(hist_data$counts)
+
+# filter out -Inf values
+valid_indices <- !is.infinite(log_counts)
+log_bin_centers <- log_bin_centers[valid_indices]
+log_counts <- log_counts[valid_indices]
+
+# estimating the slope of a power law using a log-log histogram
+fit <- lm(log_counts ~ log_bin_centers)
+summary(fit)
+# redo for : data = filter(data_plot, value >100000)$value
+
+# PARETO estimating via MLE both x_m and alpha
 # Create a continuous power law object
 m_pl <- conpl$new(data_plot$value)
-
-m_pl = conpl$new(data_plot$value)
 est = estimate_xmin(m_pl)
 
 est = estimate_xmin(m_pl,  xmax = 1e+06)
@@ -100,7 +114,6 @@ alpha = est$pars # alpha parameter (slope)
 
 plot(m_pl, main = "Power Law Fit", xlab = "Total Export (log)", ylab = "P(X >= x)")
 lines(m_pl, col = "red")
-
 
 
 # Subset the data based on xmin
@@ -122,7 +135,12 @@ lines(m_pl_subset, col = "red")
 # # Print the number of cores
 # print(num_cores)
 
-# Perform the goodness-of-fit test, using 
+# Load the parallel package
+library(parallel)
+
+# Detect the number of cores
+num_cores <- detectCores()
+# Perform the goodness-of-fit test by bootstrapping 
 bs = bootstrap_p(m_pl, threads = 8, no_of_sims= 100, xmax = 1e+06 )
 
 # bootstrap_p
@@ -142,37 +160,30 @@ bs = bootstrap_p(m_pl, threads = 8, no_of_sims= 100, xmax = 1e+06 )
 # If the p-value > 0.1, we can't reject the hypothesis that the data follows a power law
 print(bs$p)
 
-
+# MODEL SELECTION
 # Create an exponential object
 m_exp = conexp$new(data_plot$value)
-est_exp = estimate_xmin(m_exp, xmax=1e+06)
-m_exp$setXmin(est_exp)
-
-# Create a log-normal object
-m_ln = lognormal$new(data)
-est_ln = estimate_xmin(m_ln)
-m_ln$setXmin(est_ln)
+m_exp$setXmin(m_pl$getXmin())
+est_exp = estimate_pars(m_exp)
+m_exp$setPars(est_exp$pars)
 
 
-# Compare power law with exponential
-ll_pl = logLik(m_pl)
-ll_exp = logLik(m_exp)
-print(ll_pl - ll_exp)
-
-# Compare power law with log-normal
-ll_ln = logLik(m_ln)
-print(ll_pl - ll_ln)
+# Compare power law with exponential: using the Vuong's test (Vuong, Quang H. (1989): "Likelihood Ratio Tests for Model Selection and Non-Nested Hypotheses", Econometrica 57: 307–333)
+comp = compare_distributions(m_exp, m_pl)
+compare_distributions(m_exp, m_pl)[1]
+plot(comp)
 
 
 # Plot the empirical data and the fitted models
 plot(m_pl, main = "Data with Fitted Models", xlab = "x", ylab = "P(X >= x)")
 lines(m_pl, col = "red", lwd = 2)
-lines(m_exp, col = "blue", lwd = 2)
-lines(m_ln, col = "green", lwd = 2)
 
 # Add a legend
-legend("bottomleft", legend = c("Power Law", "Exponential", "Log-normal"), 
-       col = c("red", "blue", "green"), lwd = 2)
+legend("bottomleft", legend = c("Power Law", "Exponential"), 
+       col = c("red", "blue"), lwd = 2)
 
 
-
+# This function compares two models. The null hypothesis is that both classes of distributions are
+# equally far from the true distribution. If this is true, the log-likelihood ratio should (asymptoti-
+# cally) have a Normal distribution with mean zero. The test statistic is the sample average of the
+# log-likelihood ratio, standardized by a consistent estimate of its standard deviation. 
