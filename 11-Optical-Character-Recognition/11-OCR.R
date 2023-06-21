@@ -1,4 +1,6 @@
 
+
+
 ### set wd to source file dir
 setwd("~/work/Teaching/DSIER23/11-Optical-Character-Recognition")
 
@@ -90,20 +92,23 @@ print(corrected_text)
 
 # create a list of file paths
 file_paths  <- list.files("input", full.names = TRUE)
+# check the files 
+file_paths <- file_paths[file_paths != "input/orig_5752154_251687.jpg"]
 
-# initialize an empty list to store corrected texts
-corrected_texts <- list()
+# initialize corrected_texts as a named list
+no_pages <- length(seq_along(file_paths))
+corrected_texts <- vector("list", no_pages) # assuming there are 22 pages
 
 # create an OCR engine with English language
 eng <- tesseract("eng")
 
 # loop over all files
-for (file_path in file_paths) {
-  
+for (i in seq_along(file_paths)) {
+  file_path <- file_paths[i]
   cat("Processing file", i, "of", length(file_paths), ": ", file_path, "\n")
   ocr_text <- ocr(file_path, engine = eng)
   ocr_text <- gsub("\n", " ", ocr_text)
-
+  
   words <- unlist(strsplit(ocr_text, "\\s"))
   correct <- hunspell_check(words)
   incorrect_words <- words[!correct]
@@ -124,13 +129,39 @@ for (file_path in file_paths) {
       corrected_text <- gsub(corrections_df$word[i], corrections_df$suggestion[i], corrected_text, fixed = TRUE)
     }
   }
+  # extract the number after "7995" and the following dash ("—")
+  pattern <- "7995—(\\d+)"
+  matches <- str_extract(corrected_text, pattern)
+  page <- as.numeric(str_remove(matches, "7995—"))  # Convert to numeric
+  if (is.na(page)) {
+    page <- 1
+  }
   
-  # append corrected text to the list
-  corrected_texts[[file_path]] <- corrected_text
+  cat("File", i, "refers to page", page, "\n")
+  
+  # assign corrected text to the list
+  corrected_texts[[page]] <- corrected_text
 }
 
-# attac all corrected texts into a single dataframe
-all_corrections_df <- data.frame(file_path = names(corrected_texts), corrected_text = unlist(corrected_texts), stringsAsFactors = FALSE)
+# concatenate all the texts in the correct order
+corrected_text_in_order <- do.call(paste, c(corrected_texts, sep = " "))
+
+word_frequencies <- data.frame(text = corrected_text_in_order) %>%
+  tidytext::unnest_tokens(word, text) %>%
+  anti_join(tidytext::stop_words) %>% 
+  filter(!grepl("[0-9]", word)) %>% 
+  count(word, sort = TRUE)
+
+word_frequencies[1:30,]
+
+What is this law about ? 
+  # Immigration Act of 1924
+  # https://www.docsteach.org/documents/document/immigration-act-1924
+  
+pattern <- "quota of any nationality(?:\\W+\\w+){0,7}\\W+(\\d+)"
+numbers_near_quota <- str_extract_all(corrected_text_in_order, pattern)
+print(numbers_near_quota)
+
 
 
 
